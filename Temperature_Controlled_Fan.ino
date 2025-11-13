@@ -18,7 +18,7 @@ Below is the complete Arduino code used in Temperature_Controlled_Fan.ino:
  * Real-life embedded example: automatic fan control based on temperature.
  * Supports DHT sensors (DHT11/DHT22) or LM35 analog temperature sensor.
  *
- * Author : <Your Name>
+ * Author :Aayush Tank
  ********************************************************************************/
 
 /* -------------------- Configuration -------------------- */
