@@ -116,6 +116,6 @@ These can be added to GitHub Issues section for QA tracking.
 ---
 
 ## J. Author
-(Your Name)  
-(Batch / Division)  
-(Date)
+Aayush Tank 
+Div B (2025-26)
+Btech 
