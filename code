@@ -1,0 +1,82 @@
+/**
+ * Project      : LED Blinker (Non-Blocking)
+ * Description  : Professional embedded example demonstrating non-blocking LED
+ *                toggling using millis(), suitable for scalable systems.
+ * Board        : Arduino UNO / Nano / Mega
+ * Author       : <Your Name>
+ * Date         : <DD-MM-YYYY>
+ */
+
+ // -------------------------------
+ // User Configuration Section
+ // -------------------------------
+
+const uint8_t LED_PIN = 13;          // Built-in LED pin
+unsigned long ON_TIME  = 500;        // LED ON duration (ms)
+unsigned long OFF_TIME = 500;        // LED OFF duration (ms)
+
+
+// -------------------------------
+// Internal Variables
+// -------------------------------
+
+bool ledState = LOW;                 // Current LED state
+unsigned long previousMillis = 0;    // Last toggle timestamp
+
+
+// -------------------------------
+// Setup Function
+// -------------------------------
+
+void setup() {
+  pinMode(LED_PIN, OUTPUT);
+  digitalWrite(LED_PIN, ledState);
+
+  Serial.begin(9600);
+  Serial.println("=== LED Blinker Started (Non-Blocking Mode) ===");
+  Serial.println("LED toggles WITHOUT using delay() for better performance.");
+}
+
+
+// -------------------------------
+// LED Update Function (Non-Blocking)
+// -------------------------------
+
+void updateLED() {
+  unsigned long currentMillis = millis();
+
+  // Determine interval based on LED state
+  unsigned long interval = (ledState == HIGH) ? ON_TIME : OFF_TIME;
+
+  // Toggle LED when interval passes
+  if (currentMillis - previousMillis >= interval) {
+    previousMillis = currentMillis;
+
+    // Toggle state
+    ledState = !ledState;
+    digitalWrite(LED_PIN, ledState);
+
+    // Debug output
+    Serial.print("LED State: ");
+    Serial.println(ledState ? "ON" : "OFF");
+  }
+}
+
+
+// -------------------------------
+// Main Loop
+// -------------------------------
+
+void loop() {
+  updateLED();   // Blinks LED without blocking CPU
+
+  /*
+    CPU remains free for future expansions:
+    - Sensor reading
+    - Serial menu system
+    - Communication modules (I2C, SPI, UART)
+    - RTOS integration
+
+    This is the recommended structure for real embedded applications.
+  */
+}
